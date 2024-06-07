@@ -20,14 +20,37 @@ class DbOperation
 	//$evento = $_GET['evento']; // Tipo de evento (entrada ou saída)
 	//$data_hora = $_GET['data_hora']; // data, hora do movimento 
 	
-	function createEventos($data_hora, $tipo, $evento){
+	function createEventos($data_hora, $evento){
 		//$date = date('m/d/Y h:i:s a', time());
+
+		$tipo = 'movimento';
 
 		$stmt = $this->con->prepare("INSERT INTO sensor (data_hora, tipo, evento) VALUES (?, ?, ?)");
 		$stmt->bind_param("sss", $data_hora, $tipo, $evento);
 		if($stmt->execute())
 			return true; 			
 		return false;
+	}
+
+	function getIntervalo(){
+		
+		$sql_intervalo = 'select min(id) as inicio, max(id) as fim from sensor';
+
+		$stmt = $this->con->prepare($sql_intervalo);
+		$stmt->execute();
+		$stmt->bind_result($inicio,$fim);
+		
+		$intervalos = array(); 
+		
+		while($stmt->fetch()){
+			$intervalo  = array();
+			$intervalo['inicio'] = $inicio; 
+			$intervalo['fim'] = $fim; 
+			
+			array_push($intervalos, $intervalo); 
+		}
+		
+		return $intervalo; 
 	}
 	
 	function getEventos(){

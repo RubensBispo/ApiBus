@@ -27,6 +27,11 @@ INSERT INTO `sensor`(`data_hora`, `tipo`, `evento`) VALUES (now(),'movimento','s
 INSERT INTO `sensor`(`data_hora`, `tipo`, `evento`) VALUES (now(),'movimento','entrada');
 INSERT INTO `sensor`(`data_hora`, `tipo`, `evento`) VALUES (now(),'movimento','saida');
 INSERT INTO `sensor`(`data_hora`, `tipo`, `evento`) VALUES (now(),'movimento','entrada');
+INSERT INTO `sensor`(`data_hora`, `tipo`, `evento`) VALUES (now(),'movimento','entrada');
+INSERT INTO `sensor`(`data_hora`, `tipo`, `evento`) VALUES (now(),'movimento','saida');
+INSERT INTO `sensor`(`data_hora`, `tipo`, `evento`) VALUES (now(),'movimento','entrada');
+INSERT INTO `sensor`(`data_hora`, `tipo`, `evento`) VALUES (now(),'movimento','saida');
+INSERT INTO `sensor`(`data_hora`, `tipo`, `evento`) VALUES (now(),'movimento','entrada');
 
 
-INSERT INTO `usuario`(`nome`, `email`, `telefone`) VALUES ('Rodolfo','email','telefone','senha');
+/*INSERT INTO `usuario`(`nome`, `email`, `telefone`) VALUES ('Rodolfo','email','telefone','senha');*/

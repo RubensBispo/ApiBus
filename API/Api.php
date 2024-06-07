@@ -40,7 +40,7 @@
 				
 				$db = new DbOperation();
 				
-				$result = $db->createHero(
+				$result = $db->createEventos(
 					$_POST['tipo'],
 					$_POST['evento']
 					
@@ -66,6 +66,13 @@
 				
 			break; 
 			
+			case 'get_intervalo':
+				$db = new DbOperation();
+				$response['error'] = false; 
+				$response['message'] = 'Evento concluído com sucesso';
+				$response['intervalo'] = $db->getIntervalo();
+
+			break;
 		
 			case 'get_eventos':
 				$db = new DbOperation();
