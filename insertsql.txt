@@ -13,6 +13,12 @@ INSERT INTO `sensor`(`data_hora`, `tipo`, `evento`) VALUES (now(),'movimento','e
 //chamar API consulta
 http://localhost/controle_entrada_saida/API/Api.php?apicall=get_eventos
 
+//chamar total
+http://localhost/ApiBus/API/Api.php?apicall=get_total
+
+//chamar intervalo
+http://localhost/ApiBus/API/Api.php?apicall=get_intervalo
+
 //chamar API delete
 http://localhost/controle_entrada_saida/API/Api.php?apicall=delete_eventos&id=1
 
@@ -21,6 +27,3 @@ http://localhost/controle_entrada_saida/API/Api.php?apicall=delete_eventos&id=1
 http://localhost/controle_entrada_saida/API/Api.php?apicall=update_eventos&id=4&data_hora=19:12:38&tipo=movimento&evento=entrada
 
 $id, $data_hora, $tipo, $evento
-
-
-http://localhost/controle_entrada_saida/API/Api.php?apicall=update_eventos&id={4}&evento={entrada}

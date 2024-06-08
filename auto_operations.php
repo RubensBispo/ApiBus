@@ -8,10 +8,9 @@ function addRemoveUpdateItems() {
     // Adicionar um item com valores aleatórios entre 1 e 10
     $tipo = rand(1, 10);
     $evento = rand('entrada', 'saida');
-    $date = date('m/d/Y h:i:s a', time());
+    $date = date('m/d/Y h:i:s');
     $db->createEventos($data, $evento);
 
-    
     $db->getIntervalo();
 
     // Remover um item (supondo que você tenha o ID do item a ser removido)
@@ -30,5 +29,5 @@ function addRemoveUpdateItems() {
 // Loop infinito para executar as operações a cada 10 segundos
 while (true) {
     addRemoveUpdateItems();
-    sleep(10); // Espera 10 segundos antes de executar novamente
+    sleep(3); // Espera 10 segundos antes de executar novamente
 }

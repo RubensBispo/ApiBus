@@ -1,19 +1,19 @@
 <?php
- 
+
 class DbOperation
 {
-    
-    private $con;
- 
-    function __construct()
-    {
-  
-        require_once dirname(__FILE__) . '/DbConnect.php';
- 
-        $db = new DbConnect();
- 
-        $this->con = $db->connect();
-    }
+
+	private $con;
+
+	function __construct()
+	{
+
+		require_once dirname(__FILE__) . '/DbConnect.php';
+
+		$db = new DbConnect();
+
+		$this->con = $db->connect();
+	}
 	
 	//Receber dados do sensor
 	//$tipo = $_GET['tipo']; // Tipo do sensor (por exemplo, "movimento")
@@ -52,6 +52,26 @@ class DbOperation
 		
 		return $intervalo; 
 	}
+
+	//corrigir
+	function getTotal(){
+		// Responder com o número atual de pessoas na sala
+		$stmt = $this->con->prepare("SELECT COUNT(id) as result FROM sensor ");
+		$stmt->execute();
+		$stmt->bind_result($result);
+
+
+		$res_totais = array(); 
+		
+		while($stmt->fetch()){
+			$total  = array();
+			$total['total'] = $result; 
+			
+			array_push($res_totais, $total); 
+		}
+
+		return $res_totais;
+	}
 	
 	function getEventos(){
 		
@@ -63,6 +83,7 @@ class DbOperation
 		
 		while($stmt->fetch()){
 			$sensor  = array();
+
 			$sensor['id'] = $id; 
 			$sensor['data_hora'] = $data_hora; 
 			$sensor['tipo'] = $tipo; 
@@ -74,27 +95,17 @@ class DbOperation
 		return $sensores; 
 	}
 
-	//corrigir
-	function getTotal(){
-		// Responder com o número atual de pessoas na sala
-		$stmt = $this->con->prepare("SELECT COUNT(*) as total FROM sensor WHERE evento = 'entrada'");
-		$stmt->execute();
-		$row = $stmt->fetch(PDO::FETCH_ASSOC);
-		$total_evento = $row['total'];
 
-		return $total_evento;
-	}
+	function updateEventos($id, $evento ){
 
-
-	function updateEventos($id, $data_hora, $tipo, $evento ){
-		$stmt = $this->con->prepare("UPDATE sensor SET data_hora = ?, tipo = ?, evento = ?  WHERE id = ?");
-		$stmt->bind_param("sssi", $data_hora, $tipo, $evento, $id);
+		$stmt = $this->con->prepare("UPDATE sensor SET  evento = ?  WHERE id = ?");
+		$stmt->bind_param("si",  $evento, $id);
 		if($stmt->execute())
 			return true; 
 		return false; 
 	}
 
-		
+
 	function deleteEventos($id){
 		$stmt = $this->con->prepare("DELETE FROM sensor WHERE id = ? ");
 		$stmt->bind_param("i", $id);
@@ -102,4 +113,34 @@ class DbOperation
 			return true; 
 		return false; 
 	}
+
+
+	function addRemoveUpdateItems() {
+	    $db = new DbOperation();
+
+	    // Adicionar um item com valores aleatórios entre 1 e 10
+	    //$tipo = rand(1, 10);
+	    $evento = rand('entrada', 'saida');
+	    //$date = date('m/d/Y h:i:s');
+	    $db->createEventos($evento);
+
+	    $db->getIntervalo();
+
+	    // Remover um item (supondo que você tenha o ID do item a ser removido)
+	    $id = rand($db->inicio, $db->fim); // ID do item a ser removido, escolhido aleatoriamente
+	    $db->deleteEventos($id);
+
+	}
+
+	function teste()
+	{
+		$db = new DbOperation();
+		while (true) 
+		{
+	    	$db->addRemoveUpdateItems();
+	    	sleep(3); // Espera 10 segundos antes de executar novamente
+	    	$db->getTotal();
+		}
+	}
+
 }

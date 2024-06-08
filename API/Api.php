@@ -89,6 +89,15 @@
 				$response['total'] = $db->getTotal();
 
 			break; 
+
+			case 'get_simulacao':
+
+				$db = new DbOperation();
+				$response['error'] = false; 
+				$response['message'] = 'Evento simulacao executada com sucesso';
+				$response['total'] = $db->teste();
+
+			break; 
 			
 		
 			case 'update_eventos':
