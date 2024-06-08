@@ -27,3 +27,14 @@ http://localhost/controle_entrada_saida/API/Api.php?apicall=delete_eventos&id=1
 http://localhost/controle_entrada_saida/API/Api.php?apicall=update_eventos&id=4&data_hora=19:12:38&tipo=movimento&evento=entrada
 
 $id, $data_hora, $tipo, $evento
+
+
+
+//Variaveis
+
+reformular
+
+entrada
+saida
+quantidade de lugares
+
