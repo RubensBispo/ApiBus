@@ -116,19 +116,19 @@ class DbOperation
 
 
 	function addRemoveUpdateItems() {
-	    $db = new DbOperation();
+	    //$db = new DbOperation()
 
 	    // Adicionar um item com valores aleatórios entre 1 e 10
 	    //$tipo = rand(1, 10);
-	    $evento = rand('entrada', 'saida');
+	    //$evento = rand('entrada', 'saida');
 	    //$date = date('m/d/Y h:i:s');
-	    $db->createEventos($evento);
+	    //$db->createEventos($evento);
 
-	    $db->getIntervalo();
+	   // $db->getIntervalo();
 
 	    // Remover um item (supondo que você tenha o ID do item a ser removido)
-	    $id = rand($db->inicio, $db->fim); // ID do item a ser removido, escolhido aleatoriamente
-	    $db->deleteEventos($id);
+	    //$id = rand($db->inicio, $db->fim); // ID do item a ser removido, escolhido aleatoriamente
+	    //$db->deleteEventos($id);
 
 	}
 
@@ -142,5 +142,34 @@ class DbOperation
 	    	$db->getTotal();
 		}
 	}
+
+
+	function sensor(){
+
+		$teste = rand(1,100);
+
+		$sensor['capacidade_sentados']=50;
+		$sensor['capacidade_de_pe']=18;
+
+		$sensor['entrada'] = $teste;
+
+		if ($sensor['entrada']>0) 
+		{
+			$assentos_livres = $sensor['capacidade_sentados'] - $sensor['entrada'];
+
+		}
+
+		echo "<pre><br>";
+		print_r($sensor);
+		echo 'Entrada de pessoas - '. $teste.'<br>';
+		if ($total<0) {
+			echo 'Ambiente lotado';
+		}else{
+			echo 'assentos livres - '.$entradas;
+		}
+		
+		echo "</pre>";
+	}
+
 
 }
