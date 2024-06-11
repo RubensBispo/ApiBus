@@ -137,10 +137,10 @@ class DbOperation
 		$db = new DbOperation();
 		while (true) 
 		{
-	    	$db->addRemoveUpdateItems();
+			$db->addRemoveUpdateItems();
 	    	sleep(3); // Espera 10 segundos antes de executar novamente
 	    	$db->getTotal();
-		}
+	    }
 	}
 
 
@@ -153,22 +153,31 @@ class DbOperation
 
 		$sensor['entrada'] = $teste;
 
-		if ($sensor['entrada']>0) 
+		if ($sensor['entrada']> 0 && $sensor['entrada'] < $sensor['capacidade_sentados'] ) 
 		{
 			$assentos_livres = $sensor['capacidade_sentados'] - $sensor['entrada'];
+			$total_pessoa = $sensor['entrada'];
 
+			echo 'assentos livres - '.$assentos_livres.'<br>'.'Total de pessoa no ambiente: '.$total_pessoa;
+
+		}elseif ($sensor['entrada']>$sensor['capacidade_sentados']);
+		{
+			$lotacao = $sensor['entrada'] + $sensor['capacidade_sentados'];
+			echo 'Ambiente lotado<br> '. 'Qtde pessoas no ambiente ' .$lotacao.'<br>';
+		}else
+		{
+			echo "Não há assentos disponiveis";
 		}
 
-		echo "<pre><br>";
-		print_r($sensor);
-		echo 'Entrada de pessoas - '. $teste.'<br>';
-		if ($total<0) {
-			echo 'Ambiente lotado';
-		}else{
-			echo 'assentos livres - '.$entradas;
+
+		if ($a > $b) {
+			echo "a é maior que b";
+		} elseif ($a == $b) {
+			echo "a é igual a b";
+		} else {
+			echo "a é menor que b";
 		}
-		
-		echo "</pre>";
+
 	}
 
 
