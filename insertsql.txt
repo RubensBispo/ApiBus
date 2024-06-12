@@ -11,7 +11,7 @@ INSERT INTO `sensor`(`data_hora`, `tipo`, `evento`) VALUES (now(),'movimento','e
 
 
 //chamar API consulta
-http://localhost/controle_entrada_saida/API/Api.php?apicall=get_eventos
+http://localhost/ApiBus/API/Api.php?apicall=get_eventos
 
 //chamar total
 http://localhost/ApiBus/API/Api.php?apicall=get_total

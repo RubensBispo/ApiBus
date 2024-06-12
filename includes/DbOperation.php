@@ -95,7 +95,6 @@ class DbOperation
 		return $sensores; 
 	}
 
-
 	function updateEventos($id, $evento ){
 
 		$stmt = $this->con->prepare("UPDATE sensor SET  evento = ?  WHERE id = ?");
@@ -104,7 +103,6 @@ class DbOperation
 			return true; 
 		return false; 
 	}
-
 
 	function deleteEventos($id){
 		$stmt = $this->con->prepare("DELETE FROM sensor WHERE id = ? ");
@@ -144,41 +142,57 @@ class DbOperation
 	}
 
 
-	function sensor(){
+	function sensor()
+	{
+		$sensor['capacidade_sentados'] = 50;
+		$sensor['capacidade_de_pe'] = 18;
 
-		$teste = rand(1,100);
+		$sentadas = $sensor['capacidade_sentados']=50;
+		$pe = $sensor['capacidade_de_pe'];
+		$capacidade_total = $sentadas + $pe;		
 
-		$sensor['capacidade_sentados']=50;
-		$sensor['capacidade_de_pe']=18;
+		$entrada_aleatoria = rand(0,$capacidade_total);
+		$sensor['entrada'] = $entrada_aleatoria;
 
-		$sensor['entrada'] = $teste;
+		$saida_aleatoria = rand(0,$capacidade_total);
+		$sensor['saida'] = $saida_aleatoria;
 
-		if ($sensor['entrada']> 0 && $sensor['entrada'] < $sensor['capacidade_sentados'] ) 
+
+		//imprime capacidade
+		echo 'Capacidade total: '.$capacidade_total.'<br>Capacidade de assentos :'.$sentadas.'<br>'.'Capacidade em pé  :'.$pe.'<br>*********************************************<br>';
+
+
+				
+		if ($sensor['entrada']> 0 && $sensor['capacidade_sentados'] > $sensor['entrada']) 
 		{
 			$assentos_livres = $sensor['capacidade_sentados'] - $sensor['entrada'];
-			$total_pessoa = $sensor['entrada'];
 
-			echo 'assentos livres - '.$assentos_livres.'<br>'.'Total de pessoa no ambiente: '.$total_pessoa;
+			$total_pessoas = $sensor['entrada'];
 
-		}elseif ($sensor['entrada']>$sensor['capacidade_sentados']);
+			echo '<br>**********************************<br><br>Ambiente vazio.<br>Total de pessoas no ambiente: '.$total_pessoas . '<br>Assentos livres :'.$assentos_livres.'<br>';
+		} 
+		elseif ($sensor['entrada']>$sensor['capacidade_sentados'])
 		{
-			$lotacao = $sensor['entrada'] + $sensor['capacidade_sentados'];
-			echo 'Ambiente lotado<br> '. 'Qtde pessoas no ambiente ' .$lotacao.'<br>';
-		}else
+			$lotacao = $sensor['entrada'] >= $capacidade_total;
+			echo 'Ambiente lotado !!!!<br> '. 'Qtde pessoas no ambiente: ' .$lotacao.'<br><br>'.'Assentos livres  = 0<br>';
+		}
+		else
 		{
 			echo "Não há assentos disponiveis";
 		}
-
-
-		if ($a > $b) {
-			echo "a é maior que b";
-		} elseif ($a == $b) {
-			echo "a é igual a b";
-		} else {
-			echo "a é menor que b";
-		}
+		
 
 	}
 
-
 }
+
+/* 
+Capacidade sentadas :
+Capacidade pessoas em pé:
+
+Se sentrar alguem && se cap sent... < entrada
+
+
+pessoas sentadas :
+pesoas em pé:  
+*/

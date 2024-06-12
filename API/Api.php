@@ -26,10 +26,8 @@
 		}
 	}
 	
-
 	$response = array();
 	
-
 	if(isset($_GET['apicall'])){
 		
 		switch($_GET['apicall']){
@@ -95,7 +93,7 @@
 				$db = new DbOperation();
 				$response['error'] = false; 
 				$response['message'] = 'Evento simulacao executada com sucesso';
-				$response['total'] = $db->teste();
+				$response['total'] = $db->sensor();
 
 			break; 
 			
