@@ -161,38 +161,42 @@ class DbOperation
 		//imprime capacidade
 		echo 'Capacidade total: '.$capacidade_total.'<br>Capacidade de assentos :'.$sentadas.'<br>'.'Capacidade em pé  :'.$pe.'<br>*********************************************<br>';
 
+/*
 
-				
 		if ($sensor['entrada']> 0 && $sensor['capacidade_sentados'] > $sensor['entrada']) 
 		{
 			$assentos_livres = $sensor['capacidade_sentados'] - $sensor['entrada'];
 
 			$total_pessoas = $sensor['entrada'];
 
-			echo '<br>**********************************<br><br>Ambiente vazio.<br>Total de pessoas no ambiente: '.$total_pessoas . '<br>Assentos livres :'.$assentos_livres.'<br>';
+			echo '<br><br>Total de pessoas no ambiente: '.$total_pessoas . '<br>Assentos livres :'.$assentos_livres.'<br>';
 		} 
-		elseif ($sensor['entrada']>$sensor['capacidade_sentados'])
+		elseif ($sensor['entrada']<$capacidade_total)
 		{
-			$lotacao = $sensor['entrada'] >= $capacidade_total;
-			echo 'Ambiente lotado !!!!<br> '. 'Qtde pessoas no ambiente: ' .$lotacao.'<br><br>'.'Assentos livres  = 0<br>';
+			//$lotacao = $sensor['entrada'] >= $capacidade_total;
+			//echo 'Ambiente lotado !!!!<br> '. 'Qtde pessoas no ambiente: ' .$lotacao.'<br><br>'.'Assentos livres  = 0<br><br>*****************************************<br><br>';
+			
 		}
 		else
 		{
-			echo "Não há assentos disponiveis";
+			echo "Não há assentos disponiveis: ";
 		}
-		
+
+*/
+
+		if($sensor['entrada'] >= $capacidade_total){
+			echo $sensor['entrada']. '<br>';
+			echo "<span style='color:red'>Ambiente lotado</stye><br><br> ";
+			
+		}elseif($sensor['entrada']< ($capacidade_total - 3) && $sensor['entrada']>$sentadas){
+			echo 'Total: '.$sensor['entrada']. '<br>';
+			echo "<span style='color:orange'>Intermediário</stye><br><br>";
+		}else{
+			echo 'Total: '.$sensor['entrada']. '<br>';
+			echo "<span style='color:green'>Ambiente vazio</stye><br><br>";
+		}		
 
 	}
 
 }
 
-/* 
-Capacidade sentadas :
-Capacidade pessoas em pé:
-
-Se sentrar alguem && se cap sent... < entrada
-
-
-pessoas sentadas :
-pesoas em pé:  
-*/
