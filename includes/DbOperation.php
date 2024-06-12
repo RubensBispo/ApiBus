@@ -112,7 +112,6 @@ class DbOperation
 		return false; 
 	}
 
-
 	function addRemoveUpdateItems() {
 	    //$db = new DbOperation()
 
@@ -142,57 +141,31 @@ class DbOperation
 	}
 
 
+//entrada - saida
+
+
 	function sensor()
 	{
-		$sensor['capacidade_sentados'] = 50;
-		$sensor['capacidade_de_pe'] = 18;
+		$capacidade_sentados = 50;
+		$capacidade_de_pe = 18;
+		$capacidade_total = $capacidade_sentados +$capacidade_de_pe;		
 
-		$sentadas = $sensor['capacidade_sentados']=50;
-		$pe = $sensor['capacidade_de_pe'];
-		$capacidade_total = $sentadas + $pe;		
+		$entrada = rand(1,$capacidade_total);
 
-		$entrada_aleatoria = rand(0,$capacidade_total);
-		$sensor['entrada'] = $entrada_aleatoria;
-
-		$saida_aleatoria = rand(0,$capacidade_total);
-		$sensor['saida'] = $saida_aleatoria;
-
-
+		$saida = rand(1,$capacidade_total);
+		
 		//imprime capacidade
-		echo 'Capacidade total: '.$capacidade_total.'<br>Capacidade de assentos :'.$sentadas.'<br>'.'Capacidade em pé  :'.$pe.'<br>*********************************************<br>';
+		echo 'Capacidade total: '.$capacidade_total.'<br>Capacidade de assentos :'.$capacidade_sentados.'<br>'.'Capacidade em pé  :'.$capacidade_de_pe.'<br>*********************************************<br>';
 
-/*
-
-		if ($sensor['entrada']> 0 && $sensor['capacidade_sentados'] > $sensor['entrada']) 
-		{
-			$assentos_livres = $sensor['capacidade_sentados'] - $sensor['entrada'];
-
-			$total_pessoas = $sensor['entrada'];
-
-			echo '<br><br>Total de pessoas no ambiente: '.$total_pessoas . '<br>Assentos livres :'.$assentos_livres.'<br>';
-		} 
-		elseif ($sensor['entrada']<$capacidade_total)
-		{
-			//$lotacao = $sensor['entrada'] >= $capacidade_total;
-			//echo 'Ambiente lotado !!!!<br> '. 'Qtde pessoas no ambiente: ' .$lotacao.'<br><br>'.'Assentos livres  = 0<br><br>*****************************************<br><br>';
-			
-		}
-		else
-		{
-			echo "Não há assentos disponiveis: ";
-		}
-
-*/
-
-		if($sensor['entrada'] >= $capacidade_total){
-			echo $sensor['entrada']. '<br>';
+		if($entrada >= $capacidade_total){
+			echo $entrada. '<br>';
 			echo "<span style='color:red'>Ambiente lotado</stye><br><br> ";
 			
-		}elseif($sensor['entrada']< ($capacidade_total - 3) && $sensor['entrada']>$sentadas){
-			echo 'Total: '.$sensor['entrada']. '<br>';
+		}elseif($entrada< ($capacidade_total - 3) && $entrada>$capacidade_sentados){
+			echo 'Total: '.$entrada. '<br>';
 			echo "<span style='color:orange'>Intermediário</stye><br><br>";
 		}else{
-			echo 'Total: '.$sensor['entrada']. '<br>';
+			echo 'Total: '.$entrada. '<br>';
 			echo "<span style='color:green'>Ambiente vazio</stye><br><br>";
 		}		
 
