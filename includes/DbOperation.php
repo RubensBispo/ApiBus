@@ -171,5 +171,18 @@ class DbOperation
 
 	}
 
+	function getUsuario($email,$senha)
+	{
+		// Consulta SQL para verificar se o usuário existe
+		$sql = "SELECT email,senha FROM usuario WHERE email= ? AND senha= ?";		
+		
+		$stmt = $this->con->prepare($sql);
+		$stmt->bind_param("ss",$email, $senha);
+
+		if($stmt->execute())
+			return true; 
+		return false; 
+	}		
+
 }
 

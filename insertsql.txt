@@ -9,6 +9,9 @@ INSERT INTO `sensor`(`data_hora`, `tipo`, `evento`) VALUES (now(),'movimento','e
 INSERT INTO `sensor`(`data_hora`, `tipo`, `evento`) VALUES (now(),'movimento','saida');
 INSERT INTO `sensor`(`data_hora`, `tipo`, `evento`) VALUES (now(),'movimento','entrada');
 
+INSERT INTO usuario (nome,email,senha,telefone)values('Jefferson','jefferson@ig.com.br','123456','999999999');
+INSERT INTO usuario (nome,email,senha,telefone)values('Rubens','rbs@ig.com.br','123456','999999999');
+
 
 //chamar API consulta
 http://localhost/ApiBus/API/Api.php?apicall=get_eventos
@@ -20,11 +23,11 @@ http://localhost/ApiBus/API/Api.php?apicall=get_total
 http://localhost/ApiBus/API/Api.php?apicall=get_intervalo
 
 //chamar API delete
-http://localhost/controle_entrada_saida/API/Api.php?apicall=delete_eventos&id=1
+http://localhost/ApiBus/API/Api.php?apicall=delete_eventos&id=1
 
 
 //upadate
-http://localhost/controle_entrada_saida/API/Api.php?apicall=update_eventos&id=4&data_hora=19:12:38&tipo=movimento&evento=entrada
+http://localhost/ApiBus/API/Api.php?apicall=update_eventos&id=4&data_hora=19:12:38&tipo=movimento&evento=entrada
 
 $id, $data_hora, $tipo, $evento
 

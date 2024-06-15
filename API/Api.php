@@ -88,6 +88,8 @@
 
 			break; 
 
+
+			//so vamos usar este
 			case 'get_simulacao':
 
 				$db = new DbOperation();
@@ -95,6 +97,23 @@
 				$response['message'] = 'Evento simulacao executada com sucesso';
 				$response['total'] = $db->sensor();
 
+			break; 
+
+			//so vamos usar este
+			case 'get_usuario':
+			isTheseParametersAvailable(array('email','senha'));
+				$db = new DbOperation();
+				$result = $db->getUsuario($_POST['email'],$_POST['senha']);
+				
+				if($result){
+					$response['error'] = false; 
+					$response['message'] = 'login com sucesso';
+					
+				}else{
+					$response['error'] = true; 
+					$response['message'] = 'senha ou usuário não conferem';
+				}
+				
 			break; 
 			
 		
@@ -121,7 +140,8 @@
 			
 			case 'delete_eventos':
 
-				if(isset($_GET['id'])){
+				if(isset($_GET['id']))
+				{
 					$db = new DbOperation();
 					if($db->deleteEventos($_GET['id'])){
 						$response['error'] = false; 
@@ -144,5 +164,4 @@
 		$response['message'] = 'Chamada de API inválida';
 	}
 	
-
 	echo json_encode($response);
